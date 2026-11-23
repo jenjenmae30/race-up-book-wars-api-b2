@@ -1,7 +1,7 @@
 {
-  "name": "your-game-api",
+  "name": "race-up-book-wars-api-b2",
   "version": "1.0.0",
-  "description": "CHANGE_ME - one sentence about your game (CS 313 Software Engineering 1)",
+  "description": "A multiplayer quiz racing game where correct answers unlock mystery books that move players up or down shelves.",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
@@ -19,7 +19,7 @@
   "engines": {
     "node": ">=22"
   },
-  "author": "CHANGE_ME - your full name",
+  "author": "Jenice Mae G. Gerero",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^18.0.7",
