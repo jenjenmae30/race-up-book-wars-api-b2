@@ -43,6 +43,13 @@ module.exports = {
         grade_level: '3',
       },
     ]);
+    await queryInterface.sequelize.query(`
+  SELECT setval(
+    pg_get_serial_sequence('question_sets', 'set_id'),
+    (SELECT MAX(set_id) FROM question_sets),
+    true
+  );
+`);
 
     await insert('book_effects', [
       { book_effect_id: 1, effect_type: 'MOVE_FORWARD', effect_value: 1 },
