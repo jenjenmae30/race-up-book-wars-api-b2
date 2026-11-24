@@ -5,24 +5,8 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.addColumn('question_sets', 'host_user_id', {
       type: Sequelize.INTEGER,
-      allowNull: true,
-    });
-
-    await queryInterface.sequelize.query(`
-      UPDATE "question_sets"
-      SET "host_user_id" = (
-        SELECT "user_id"
-        FROM "users"
-        WHERE "role" = 'HOST'
-        ORDER BY "user_id"
-        LIMIT 1
-      )
-      WHERE "host_user_id" IS NULL
-    `);
-
-    await queryInterface.changeColumn('question_sets', 'host_user_id', {
-      type: Sequelize.INTEGER,
       allowNull: false,
+      defaultValue: 1,
     });
 
     await queryInterface.addConstraint('question_sets', {
