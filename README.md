@@ -76,3 +76,25 @@ Base URL: `http://localhost:3001/api/v1`
 | npm run db:check | Counts the rows in every table |
 | npm run db:reset | Empties the database, rebuilds every table and reloads the seed data |
 | npm run check | Runs the same automatic check that GitHub runs after every push |
+## Week 11 API endpoints
+
+Base URL: `http://localhost:3001/api/v1`
+
+For Week 11, identify the caller with the `X-Demo-User` header:
+- Host requests: `X-Demo-User: DEMO-HOST-01`
+- Player join requests: `X-Demo-User: DEMO-PLAYER-01`
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| POST | `/question-sets` | Create a question set |
+| GET | `/question-sets` | List the host's question sets |
+| GET | `/question-sets/:setId` | Get a question set |
+| PATCH | `/question-sets/:setId` | Update a question set |
+| DELETE | `/question-sets/:setId` | Delete a question set |
+| POST | `/sessions` | Create a session with a server-generated six-digit code |
+| GET | `/sessions` | List the host's sessions |
+| GET | `/sessions/:sessionCode` | Get a session |
+| PATCH | `/sessions/:sessionCode/status` | Start or close a session |
+| POST | `/sessions/:sessionCode/join` | Join or rejoin a waiting session |
+
+Session status changes accept `ACTIVE` or `CLOSED`. A first player join returns `201`; rejoining the same session returns `200`.

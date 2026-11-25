@@ -43,6 +43,13 @@ module.exports = {
         grade_level: '3',
       },
     ]);
+    await queryInterface.sequelize.query(`
+  SELECT setval(
+    pg_get_serial_sequence('question_sets', 'set_id'),
+    (SELECT MAX(set_id) FROM question_sets),
+    true
+  );
+`);
 
     await insert('book_effects', [
       { book_effect_id: 1, effect_type: 'MOVE_FORWARD', effect_value: 1 },
@@ -94,6 +101,13 @@ module.exports = {
         time_limit_sec: 30,
       },
     ]);
+    await queryInterface.sequelize.query(`
+  SELECT setval(
+    pg_get_serial_sequence('game_sessions', 'session_id'),
+    (SELECT MAX(session_id) FROM game_sessions),
+    true
+  );
+`);
 
     await insert(
       'players',
@@ -112,6 +126,13 @@ module.exports = {
         joined_at: gameStart,
       }))
     );
+    await queryInterface.sequelize.query(`
+  SELECT setval(
+    pg_get_serial_sequence('players', 'player_id'),
+    (SELECT MAX(player_id) FROM players),
+    true
+  );
+`);
 
     await insert('player_question_progress', [
       { progress_id: 1, player_id: 1, question_id: 1, status: 'COMPLETED', attempts: 1, completed_at: gameEnd },
